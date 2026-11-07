@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings | Habit Tracker</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/calendar.css">
+</head>
+<body data-page="settings">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="app-main">
+      <header class="mobile-topbar" id="mobile-topbar"></header>
+
+      <main id="main" class="page" tabindex="-1">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Settings</h1>
+            <p class="page-subtitle">Profile, appearance, reminders and your data.</p>
+          </div>
+        </div>
+
+        <div class="stack section-gap">
+          <section class="card" aria-labelledby="profile-title">
+            <h2 class="card__title" id="profile-title">Profile</h2>
+            <p class="notice section-gap">
+              <span data-icon="info" data-icon-size="18"></span>
+              <span><strong>Local demo mode (prototype).</strong> Profiles only keep data separate in this browser. They are not accounts and have no passwords, so they do not protect your data.</span>
+            </p>
+            <dl class="definition-list section-gap">
+              <div>
+                <dt>Open profile</dt>
+                <dd id="profile-name">Loading&hellip;</dd>
+              </div>
+              <div>
+                <dt>Created</dt>
+                <dd id="profile-created">Loading&hellip;</dd>
+              </div>
+            </dl>
+            <div class="cluster section-gap">
+              <a class="btn btn--secondary" href="index.html">Switch profile</a>
+              <button class="btn btn--danger" type="button" id="delete-profile-button" disabled>Delete this profile</button>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="appearance-title">
+            <h2 class="card__title" id="appearance-title">Appearance</h2>
+            <div class="field section-gap">
+              <label class="field__label" for="theme-select">Theme</label>
+              <select class="select" id="theme-select">
+                <option value="system">Match my device</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+              <p class="field__hint">Saved in this browser.</p>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="reminders-title">
+            <h2 class="card__title" id="reminders-title">Reminders</h2>
+            <p class="notice notice--warning section-gap">
+              <span data-icon="info" data-icon-size="18"></span>
+              <span><strong>Reminders only work while this app is open in a browser tab.</strong> Nothing happens when the tab or browser is closed. Reminders are set for each habit when you create or edit it.</span>
+            </p>
+
+            <dl class="definition-list section-gap">
+              <div>
+                <dt>Browser notification permission</dt>
+                <dd id="notif-status">Checking&hellip;</dd>
+              </div>
+            </dl>
+
+            <div class="cluster section-gap">
+              <button class="btn btn--primary" type="button" id="notif-enable" disabled>Enable notifications</button>
+              <button class="btn btn--secondary" type="button" id="notif-test" disabled>Send test notification</button>
+              <button class="btn btn--secondary" type="button" id="notif-inapp-test">Show test reminder message</button>
+            </div>
+
+            <h3 class="card__title section-gap">Habits with reminders</h3>
+            <div class="section-gap" id="reminder-list"><p class="card__subtitle">Loading&hellip;</p></div>
+
+            <h3 class="card__title section-gap">What to expect</h3>
+            <dl class="definition-list section-gap">
+              <div>
+                <dt>While the app is open</dt>
+                <dd>The app checks every 30 seconds. A habit is reminded once per day when its reminder time has passed, it is scheduled today, and it is not done yet. You always get a message in the app, and a pop-up as well if you have allowed notifications.</dd>
+              </div>
+              <div>
+                <dt>When the app is closed</dt>
+                <dd>Nothing. Reminders for a closed tab or browser would need a background service and a push server, which this project does not have. If you open the app after a reminder time with the habit still not done, you get that reminder once when the page loads.</dd>
+              </div>
+              <div>
+                <dt>Late reminders</dt>
+                <dd>Browsers slow down background tabs, so a reminder can arrive a little late. Computer settings such as Focus Assist or Do Not Disturb can hide pop-ups.</dd>
+              </div>
+              <div>
+                <dt>Phones and permissions</dt>
+                <dd>Some phone browsers do not allow notifications from web pages. If you press Block, the browser will not ask again. You can change it in your browser's site settings.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="card" aria-labelledby="data-title">
+            <h2 class="card__title" id="data-title">Your data</h2>
+            <p class="card__subtitle">Stored in this browser only, for the open profile. A backup file holds your habits and completion records. The recent activity list and reminder history are not included.</p>
+            <p class="section-gap" id="data-summary">Loading&hellip;</p>
+
+            <div class="cluster section-gap">
+              <button class="btn btn--secondary" type="button" id="export-button" disabled>Export backup (.json)</button>
+              <button class="btn btn--danger" type="button" id="delete-data-button" disabled>Delete habits and history</button>
+            </div>
+
+            <div class="field section-gap">
+              <label class="field__label" for="import-file">Import a backup (.json)</label>
+              <input class="input" id="import-file" type="file" accept=".json,application/json" disabled>
+              <p class="field__hint">Importing replaces this profile's current habits and history. You will be asked to confirm first.</p>
+            </div>
+            <div class="section-gap">
+              <button class="btn btn--primary" type="button" id="import-button" disabled>Import selected file</button>
+            </div>
+
+            <div class="notice section-gap" id="data-feedback" role="status" hidden></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <nav class="tabbar" id="tabbar" aria-label="Primary mobile"></nav>
+  <script type="module" src="js/page-settings.js"></script>
+</body>
+</html>

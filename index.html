@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Habit Tracker | Team Galacticos</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="A personal habit tracker built with HTML, CSS and vanilla JavaScript.">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" data-icon="check"></span>
+        <span class="brand__text">
+          <span class="brand__name">Habit Tracker</span>
+          <span class="brand__team">Team Galacticos</span>
+        </span>
+      </a>
+      <button class="btn btn--secondary btn--icon" type="button" data-theme-toggle></button>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="hero__eyebrow">Local demo mode &middot; prototype</p>
+      <h1 class="hero__title" id="hero-title">Build habits that stick, one day at a time.</h1>
+      <p class="hero__text">Create habits, set when they are due, tick them off each day, and review your progress over time.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#profile-panel">Choose or create a profile</a>
+      </div>
+    </section>
+
+    <section class="card profile-panel" id="profile-panel" aria-labelledby="profile-title">
+      <h2 class="card__title" id="profile-title">Choose a profile</h2>
+
+      <p class="notice notice--warning section-gap">
+        <span data-icon="info" data-icon-size="18"></span>
+        <span><strong>Prototype, not a secure login.</strong> A profile only keeps habits separate inside this browser. There are no passwords. Data is not sent anywhere, does not sync between devices, can be read by anyone using this browser, and is lost if you clear this site's data. Use Export in Settings to make backups.</span>
+      </p>
+
+      <div id="storage-problem" class="section-gap"></div>
+
+      <div class="section-gap" id="profile-region" aria-live="polite">
+        <p class="card__subtitle">Loading profiles&hellip;</p>
+      </div>
+
+      <form class="profile-create" id="profile-form" novalidate>
+        <div class="field">
+          <label class="field__label" for="profile-name">New profile name</label>
+          <input class="input" id="profile-name" name="displayName" type="text" maxlength="24" autocomplete="off" placeholder="e.g. Alex" aria-describedby="profile-name-hint profile-name-error">
+          <p class="field__hint" id="profile-name-hint">2 to 24 characters. This is only a label, not a login.</p>
+          <p class="field__error" id="profile-name-error" role="alert" hidden></p>
+        </div>
+        <div>
+          <button class="btn btn--primary" type="submit">Create profile and open it</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="landing-section" aria-labelledby="features-title">
+      <h2 class="card__title" id="features-title">What you can do</h2>
+      <div class="feature-grid section-gap">
+        <article class="card">
+          <div class="feature-card__icon" data-icon="list"></div>
+          <h3 class="card__title">Manage habits</h3>
+          <p class="card__subtitle">Name, category, priority, start date and a daily or weekday schedule.</p>
+        </article>
+        <article class="card">
+          <div class="feature-card__icon" data-icon="flame"></div>
+          <h3 class="card__title">Track streaks</h3>
+          <p class="card__subtitle">Streaks count scheduled days only, so rest days never break them.</p>
+        </article>
+        <article class="card">
+          <div class="feature-card__icon" data-icon="chart"></div>
+          <h3 class="card__title">Review progress</h3>
+          <p class="card__subtitle">Weekly and monthly summaries calculated from your real history.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Personal Habit Tracker &middot; Team Galacticos &middot; HTML, CSS and vanilla JavaScript</div>
+  </footer>
+
+  <script type="module" src="js/page-index.js"></script>
+</body>
+</html>

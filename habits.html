@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Habits | Habit Tracker</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ 
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/habits.css">
+  <link rel="stylesheet" href="css/insights.css">
+</head>
+<body data-page="habits">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="app-main">
+      <header class="mobile-topbar" id="mobile-topbar"></header>
+
+      <main id="main" class="page" tabindex="-1">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Habits</h1>
+            <p class="page-subtitle" id="habit-count">Loading&hellip;</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn--primary" type="button" id="new-habit-button" disabled>
+              <span data-icon="plus" data-icon-size="18"></span>New habit
+            </button>
+          </div>
+        </div>
+
+        <section class="card section-gap" aria-labelledby="filters-title">
+          <div class="card__header">
+            <div>
+              <h2 class="card__title" id="filters-title">Search, filter and sort</h2>
+              <p class="card__subtitle">Search looks in the name and the description. These choices are not saved when you leave the page.</p>
+            </div>
+          </div>
+          <div class="toolbar" id="filter-bar">
+            <div class="field">
+              <label class="field__label" for="filter-search">Search</label>
+              <input class="input" id="filter-search" type="search" placeholder="Name or description" autocomplete="off" disabled>
+            </div>
+            <div class="field">
+              <label class="field__label" for="filter-category">Category</label>
+              <select class="select" id="filter-category" disabled><option value="all">All categories</option></select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="filter-priority">Priority</label>
+              <select class="select" id="filter-priority" disabled><option value="all">All priorities</option></select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="filter-status">Status today</label>
+              <select class="select" id="filter-status" disabled><option value="all">All statuses</option></select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="filter-schedule">Schedule</label>
+              <select class="select" id="filter-schedule" disabled><option value="all">All schedules</option></select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="filter-sort">Sort by</label>
+              <select class="select" id="filter-sort" disabled><option value="name">Name (A to Z)</option></select>
+            </div>
+            <button class="btn btn--secondary" type="button" id="filter-reset" aria-label="Reset all filters and sorting" disabled>Reset all</button>
+          </div>
+          <p class="filter-summary" id="filter-summary" role="status"></p>
+        </section>
+
+        <section class="section-gap" aria-label="Habit list">
+          <div id="habit-list-region">
+            <p class="card__subtitle">Loading habits&hellip;</p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <nav class="tabbar" id="tabbar" aria-label="Primary mobile"></nav>
+
+  <dialog class="dialog" id="habit-dialog" aria-labelledby="habit-dialog-title">
+    <form class="dialog__form" id="habit-form" novalidate>
+      <div class="dialog__header">
+        <h2 class="card__title" id="habit-dialog-title">New habit</h2>
+        <button class="btn btn--ghost btn--icon" type="button" data-close-dialog aria-label="Close dialog">
+          <span data-icon="x"></span>
+        </button>
+      </div>
+
+      <div class="dialog__body">
+        <div class="form-grid">
+          <p class="notice notice--warning" id="form-message" role="alert" hidden></p>
+
+          <div class="field">
+            <label class="field__label" for="habit-name">Habit name <span class="required-mark" aria-hidden="true">*</span></label>
+            <input class="input" id="habit-name" name="name" type="text" maxlength="60" placeholder="e.g. Morning walk" autocomplete="off" aria-required="true" aria-describedby="habit-name-error">
+            <p class="field__error" id="habit-name-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="habit-description">Description</label>
+            <textarea class="textarea" id="habit-description" name="description" maxlength="200" placeholder="Why does this habit matter to you? (optional)" aria-describedby="habit-description-error"></textarea>
+            <p class="field__error" id="habit-description-error" hidden></p>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label class="field__label" for="habit-category">Category</label>
+              <select class="select" id="habit-category" name="category" aria-describedby="habit-category-error"></select>
+              <p class="field__error" id="habit-category-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="habit-priority">Priority</label>
+              <select class="select" id="habit-priority" name="priority" aria-describedby="habit-priority-error">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+              <p class="field__error" id="habit-priority-error" hidden></p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label class="field__label" for="habit-start">Start date</label>
+              <input class="input" id="habit-start" name="startDate" type="date" min="2000-01-01" max="2100-12-31" aria-describedby="habit-start-error">
+              <p class="field__error" id="habit-start-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="habit-schedule">Schedule</label>
+              <select class="select" id="habit-schedule" name="schedule" aria-describedby="habit-schedule-error">
+                <option value="daily">Every day</option>
+                <option value="workdays">Weekdays (Mon to Fri)</option>
+                <option value="custom">Custom days</option>
+              </select>
+              <p class="field__error" id="habit-schedule-error" hidden></p>
+            </div>
+          </div>
+
+          <fieldset class="fieldset field" id="weekday-field" aria-describedby="habit-days-error" hidden>
+            <legend class="field__label">Which days?</legend>
+            <div class="weekday-picker">
+              <label class="chip"><input type="checkbox" name="days" value="1"><span>Mon</span></label>
+              <label class="chip"><input type="checkbox" name="days" value="2"><span>Tue</span></label>
+              <label class="chip"><input type="checkbox" name="days" value="3"><span>Wed</span></label>
+              <label class="chip"><input type="checkbox" name="days" value="4"><span>Thu</span></label>
+              <label class="chip"><input type="checkbox" name="days" value="5"><span>Fri</span></label>
+              <label class="chip"><input type="checkbox" name="days" value="6"><span>Sat</span></label>
+              <label class="chip"><input type="checkbox" name="days" value="0"><span>Sun</span></label>
+            </div>
+            <p class="field__error" id="habit-days-error" hidden></p>
+          </fieldset>
+
+          <div class="form-row">
+            <div class="field">
+              <label class="check-row" for="habit-reminder">
+                <input type="checkbox" id="habit-reminder" name="reminder">
+                <span>Remind me</span>
+              </label>
+              <p class="field__hint">Reminders only work while this app is open in a browser tab. You always get a message in the app, and a pop-up too if you allow notifications in Settings.</p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="habit-reminder-time">Reminder time</label>
+              <input class="input" id="habit-reminder-time" name="reminderTime" type="time" value="08:00" disabled aria-describedby="habit-reminder-time-error">
+              <p class="field__error" id="habit-reminder-time-error" hidden></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog__footer">
+        <button class="btn btn--ghost" type="button" data-close-dialog>Cancel</button>
+        <button class="btn btn--primary" type="submit" id="habit-submit">Save habit</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/page-habits.js"></script>
+</body>
+</html>

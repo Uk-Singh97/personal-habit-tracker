@@ -1,0 +1,121 @@
+/* css/variables.css
+   Design tokens. Change a value here and the whole app updates.
+   Light theme is the default; dark applies when the device prefers dark
+   (and the user has not forced light) or when the user picks dark. */
+
+:root {
+  color-scheme: light;
+
+  /* Brand and status colours */
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-soft: #eceeff;
+  --color-on-primary: #ffffff;
+  --color-link: #4338ca;
+  --color-accent: #0f766e;
+  --color-accent-soft: #dff4f0;
+  --color-on-accent: #ffffff;
+  --color-warning: #b45309;
+  --color-warning-soft: #fdf1dc;
+  --color-danger: #be123c;
+  --color-danger-soft: #fde6ec;
+
+  /* Neutrals */
+  --color-bg: #f5f6fb;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef0f8;
+  --color-border: #dde1ee;
+  --color-border-strong: #7d84a3;
+  --color-text: #151826;
+  --color-text-muted: #474d66;
+  --color-track: #e3e6f2;
+  --color-focus: #4f46e5;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2.25rem;
+  --space-7: 3.5rem;
+
+  /* Shape and depth */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-full: 999px;
+  --shadow-sm: 0 1px 2px rgba(21, 24, 38, 0.06), 0 1px 3px rgba(21, 24, 38, 0.06);
+  --shadow-lg: 0 20px 45px rgba(21, 24, 38, 0.22);
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --text-xs: 0.78rem;
+  --text-sm: 0.9rem;
+  --text-md: 1rem;
+  --text-lg: 1.2rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.9rem;
+  --text-3xl: clamp(2.2rem, 5vw, 3.4rem);
+
+  /* Motion and layout */
+  --transition: 160ms ease;
+  --sidebar-width: 16rem;
+  --tabbar-height: 4.25rem;
+}
+
+/* Dark theme: follows the device unless the user forced light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-primary: #5558e8;
+    --color-primary-hover: #6c6ff0;
+    --color-primary-soft: #26294d;
+    --color-link: #a5b4fc;
+    --color-accent: #2dd4bf;
+    --color-accent-soft: #123a3a;
+    --color-on-accent: #04201c;
+    --color-warning: #fbbf24;
+    --color-warning-soft: #3a2c10;
+    --color-danger: #fb7185;
+    --color-danger-soft: #3f1722;
+    --color-bg: #0e1020;
+    --color-surface: #171a2e;
+    --color-surface-2: #20243d;
+    --color-border: #2b3050;
+    --color-border-strong: #6a7197;
+    --color-text: #eceefb;
+    --color-text-muted: #a9afcb;
+    --color-track: #2b3050;
+    --color-focus: #a5b4fc;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Dark theme: user explicitly chose dark */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-primary: #5558e8;
+  --color-primary-hover: #6c6ff0;
+  --color-primary-soft: #26294d;
+  --color-link: #a5b4fc;
+  --color-accent: #2dd4bf;
+  --color-accent-soft: #123a3a;
+  --color-on-accent: #04201c;
+  --color-warning: #fbbf24;
+  --color-warning-soft: #3a2c10;
+  --color-danger: #fb7185;
+  --color-danger-soft: #3f1722;
+  --color-bg: #0e1020;
+  --color-surface: #171a2e;
+  --color-surface-2: #20243d;
+  --color-border: #2b3050;
+  --color-border-strong: #6a7197;
+  --color-text: #eceefb;
+  --color-text-muted: #a9afcb;
+  --color-track: #2b3050;
+  --color-focus: #a5b4fc;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.6);
+}

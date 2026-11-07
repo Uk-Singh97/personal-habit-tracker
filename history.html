@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>History | Habit Tracker</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ 
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/habits.css">
+  <link rel="stylesheet" href="css/insights.css">
+  <link rel="stylesheet" href="css/calendar.css">
+</head>
+<body data-page="history">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="app-main">
+      <header class="mobile-topbar" id="mobile-topbar"></header>
+
+      <main id="main" class="page" tabindex="-1">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">History</h1>
+            <p class="page-subtitle">Review any day. You can tick a missed habit or undo a tick for today and past days, but not for future days.</p>
+          </div>
+          <div class="page-actions">
+            <a class="btn btn--secondary" href="progress.html">Progress</a>
+            <a class="btn btn--primary" href="habits.html">Manage habits</a>
+          </div>
+        </div>
+
+        <div id="history-notice"></div>
+        <p class="card__subtitle section-gap" id="history-loading">Loading&hellip;</p>
+        <div class="section-gap" id="history-empty" hidden></div>
+
+        <div class="grid grid--two section-gap" id="history-main" hidden>
+          <section class="card" aria-labelledby="calendar-title">
+            <div class="card__header">
+              <h2 class="card__title" id="calendar-title">Calendar</h2>
+              <a class="btn btn--ghost btn--sm jump-link" href="#day-detail">Jump to day details</a>
+            </div>
+
+            <div class="month-nav">
+              <div class="cluster">
+                <button class="btn btn--secondary btn--sm" type="button" id="prev-month">Previous</button>
+                <h3 class="month-nav__label" id="month-label" aria-live="polite"></h3>
+                <button class="btn btn--secondary btn--sm" type="button" id="next-month">Next</button>
+              </div>
+              <button class="btn btn--secondary btn--sm" type="button" id="this-month">This month</button>
+            </div>
+
+            <div class="field goto-field section-gap">
+              <label class="field__label" for="goto-date">Go to date</label>
+              <input class="input" id="goto-date" type="date">
+            </div>
+
+            <div class="section-gap" id="month-summary"></div>
+
+            <div class="calendar" id="calendar" role="group"></div>
+            <p class="field__hint section-gap">Tip: use the arrow keys to move between days and Enter to open a day.</p>
+
+            <ul class="legend section-gap" aria-label="Calendar colours">
+              <li class="legend__item"><span class="legend__swatch legend__swatch--done"></span>Everything done</li>
+              <li class="legend__item"><span class="legend__swatch legend__swatch--partial"></span>Partly done</li>
+              <li class="legend__item"><span class="legend__swatch legend__swatch--missed"></span>Nothing done</li>
+              <li class="legend__item"><span class="legend__swatch"></span>Nothing scheduled</li>
+              <li class="legend__item"><span class="legend__swatch legend__swatch--future"></span>Not due yet</li>
+            </ul>
+          </section>
+
+          <section class="card" id="day-detail" tabindex="-1" aria-labelledby="detail-title">
+            <h2 class="card__title" id="detail-title">Day details</h2>
+            <div class="section-gap" id="detail-region"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <nav class="tabbar" id="tabbar" aria-label="Primary mobile"></nav>
+  <script type="module" src="js/page-history.js"></script>
+</body>
+</html>

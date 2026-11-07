@@ -1,0 +1,283 @@
+/* css/calendar.css
+   History and Progress pages: month navigation, calendar, charts, tables.
+   Loaded AFTER components.css, habits.css and insights.css. */
+
+/* ---------- Month navigation ---------- */
+.month-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.month-nav__label {
+  min-width: 10rem;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  text-align: center;
+}
+
+.goto-field {
+  max-width: 14rem;
+}
+
+/* The "jump to details" link is only useful when the panels are stacked */
+@media (min-width: 1100px) {
+  .jump-link {
+    display: none;
+  }
+}
+
+.figure-list--four {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 560px) {
+  .figure-list--four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.badge--missed {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+/* ---------- Calendar ---------- */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.3rem;
+  margin-top: var(--space-4);
+}
+
+.calendar__weekday {
+  padding-bottom: 0.2rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-align: center;
+}
+
+.cal-blank {
+  min-height: 3.25rem;
+}
+
+.cal-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  min-height: 3.25rem;
+  padding: 0.25rem 0.1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.cal-day:hover {
+  border-color: var(--color-border-strong);
+}
+
+.cal-day__num {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.cal-day__count {
+  min-height: 0.8rem;
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.cal-day--full {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+}
+
+.cal-day--partial {
+  background: var(--color-warning-soft);
+  border-color: var(--color-warning);
+}
+
+.cal-day--missed {
+  background: var(--color-danger-soft);
+  border-color: var(--color-danger);
+}
+
+.cal-day--pending {
+  background: var(--color-surface-2);
+  border-color: var(--color-border-strong);
+}
+
+.cal-day--none {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.cal-day--future {
+  background: var(--color-surface);
+  border-style: dashed;
+  border-color: var(--color-border-strong);
+  color: var(--color-text-muted);
+}
+
+.cal-day--today {
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.cal-day[aria-pressed="true"] {
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+
+.cal-day--today[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--color-primary), inset 0 0 0 2px var(--color-primary);
+}
+
+@media (min-width: 560px) {
+  .cal-blank,
+  .cal-day {
+    min-height: 4rem;
+  }
+
+  .cal-day__count {
+    font-size: var(--text-xs);
+  }
+}
+
+.legend__swatch--partial {
+  background: var(--color-warning);
+}
+
+.legend__swatch--future {
+  background: transparent;
+  border: 1px dashed var(--color-border-strong);
+}
+
+/* ---------- Monthly bar chart ---------- */
+.month-chart {
+  display: grid;
+  grid-template-columns: repeat(var(--days, 30), minmax(0, 1fr));
+  gap: 2px;
+}
+
+.month-chart__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.month-chart__track {
+  display: flex;
+  align-items: flex-end;
+  height: 6rem;
+  overflow: hidden;
+  background: var(--color-surface-2);
+  border-radius: 3px;
+}
+
+.month-chart__bar {
+  width: 100%;
+  height: calc(var(--value, 0) * 1%);
+  background: var(--color-primary);
+}
+
+.month-chart__bar--full {
+  background: var(--color-accent);
+}
+
+.month-chart__col--future .month-chart__track {
+  opacity: 0.55;
+}
+
+.month-chart__col--today .month-chart__track {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.month-chart__label {
+  display: flex;
+  justify-content: center;
+  min-height: 1rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.2;
+}
+
+.month-chart__label span {
+  white-space: nowrap;
+}
+
+.chart-note {
+  margin-top: var(--space-3);
+}
+
+/* ---------- Weekly trend chart (reuses the week-chart pieces) ---------- */
+.trend-chart {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 8), minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.trend-chart .week-chart__label {
+  text-align: center;
+}
+
+/* ---------- Tables ---------- */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.data-table th {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.data-table .num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.data-table__name {
+  min-width: 9rem;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
+.rate-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.rate-cell .progress {
+  width: 4.5rem;
+}

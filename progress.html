@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progress | Habit Tracker</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/habits.css">
+  <link rel="stylesheet" href="css/insights.css">
+  <link rel="stylesheet" href="css/calendar.css">
+</head>
+<body data-page="progress">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="app-main">
+      <header class="mobile-topbar" id="mobile-topbar"></header>
+
+      <main id="main" class="page" tabindex="-1">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Progress</h1>
+            <p class="page-subtitle">Monthly and weekly summaries, and your streaks.</p>
+          </div>
+          <div class="page-actions">
+            <a class="btn btn--secondary" href="history.html">History</a>
+            <a class="btn btn--primary" href="habits.html">Manage habits</a>
+          </div>
+        </div>
+
+        <div id="progress-notice"></div>
+        <p class="card__subtitle section-gap" id="progress-loading">Loading&hellip;</p>
+        <div class="section-gap" id="progress-empty" hidden></div>
+
+        <div class="stack section-gap" id="progress-main" hidden>
+          <section class="grid grid--stats" aria-label="Overview">
+            <article class="card stat-card">
+              <span class="stat-card__icon" data-icon="chart"></span>
+              <div>
+                <p class="stat-card__label">Overall completion</p>
+                <p class="stat-card__value" id="ov-overall">&ndash;</p>
+                <p class="stat-card__hint" id="ov-overall-hint"></p>
+              </div>
+            </article>
+            <article class="card stat-card">
+              <span class="stat-card__icon" data-icon="flame"></span>
+              <div>
+                <p class="stat-card__label">Best current streak</p>
+                <p class="stat-card__value" id="ov-current">0</p>
+                <p class="stat-card__hint" id="ov-current-hint"></p>
+              </div>
+            </article>
+            <article class="card stat-card">
+              <span class="stat-card__icon" data-icon="target"></span>
+              <div>
+                <p class="stat-card__label">Best streak ever</p>
+                <p class="stat-card__value" id="ov-best">0</p>
+                <p class="stat-card__hint" id="ov-best-hint"></p>
+              </div>
+            </article>
+            <article class="card stat-card">
+              <span class="stat-card__icon" data-icon="clock"></span>
+              <div>
+                <p class="stat-card__label">Missed days</p>
+                <p class="stat-card__value" id="ov-missed">0</p>
+                <p class="stat-card__hint">Scheduled days before today, not done</p>
+              </div>
+            </article>
+          </section>
+
+          <section class="card" aria-labelledby="month-title">
+            <div class="card__header">
+              <h2 class="card__title" id="month-title">Monthly summary</h2>
+              <div class="cluster">
+                <button class="btn btn--secondary btn--sm" type="button" id="prev-month">Previous</button>
+                <span class="month-nav__label" id="month-label" aria-live="polite"></span>
+                <button class="btn btn--secondary btn--sm" type="button" id="next-month">Next</button>
+                <button class="btn btn--secondary btn--sm" type="button" id="this-month">This month</button>
+              </div>
+            </div>
+            <div id="month-summary"></div>
+            <div class="section-gap" id="month-chart"></div>
+            <h3 class="card__title section-gap">By habit this month</h3>
+            <div class="section-gap" id="month-habits"></div>
+          </section>
+
+          <section class="card" aria-labelledby="trend-title">
+            <h2 class="card__title" id="trend-title">Weekly trend</h2>
+            <p class="card__subtitle">Completion rate for each of the last 8 weeks (weeks start on Monday).</p>
+            <div class="section-gap" id="trend-region"></div>
+          </section>
+
+          <section class="card" aria-labelledby="streak-title">
+            <h2 class="card__title" id="streak-title">Habit streaks</h2>
+            <p class="card__subtitle">Sorted by current streak.</p>
+            <div class="section-gap" id="streak-region"></div>
+          </section>
+        </div>
+
+        <section class="card section-gap" aria-labelledby="rules-title">
+          <h2 class="card__title" id="rules-title">How we count</h2>
+          <dl class="definition-list section-gap">
+            <div>
+              <dt>Scheduled day</dt>
+              <dd>A day on or after the habit's start date (and before any end date) that matches its chosen weekdays.</dd>
+            </div>
+            <div>
+              <dt>Completion percentage</dt>
+              <dd>Completed scheduled days divided by scheduled days, rounded. When nothing was scheduled, a dash is shown instead of a number.</dd>
+            </div>
+            <div>
+              <dt>Streak</dt>
+              <dd>Consecutive scheduled days completed, counted back from today. Days when the habit is not scheduled are skipped and never break a streak. If today is scheduled but not done yet, the streak is not broken until the day ends.</dd>
+            </div>
+            <div>
+              <dt>Missed</dt>
+              <dd>A scheduled day before today with no completion. Today's unfinished habits count as remaining, not missed.</dd>
+            </div>
+            <div>
+              <dt>Limits</dt>
+              <dd>The app does not remember old schedules. If you change a habit's schedule, the past is recalculated using the new one, and completions on days that are no longer scheduled are kept but not counted.</dd>
+            </div>
+          </dl>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <nav class="tabbar" id="tabbar" aria-label="Primary mobile"></nav>
+  <script type="module" src="js/page-progress.js"></script>
+</body>
+</html>

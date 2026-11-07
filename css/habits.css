@@ -1,0 +1,63 @@
+/* css/habits.css
+   Styles for the Habits and Dashboard pages (linked from habits.html and dashboard.html).
+   Loaded AFTER components.css, so these rules extend or override it. */
+
+/* Round tick button at the start of each habit row */
+.habit-toggle {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 2px solid var(--color-border-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.habit-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.habit-toggle[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.habit-toggle:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* Non-clickable status circle (not scheduled today, not started, ended) */
+.habit-list .habit-item__status {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+/* Long names or descriptions wrap instead of overflowing */
+.habit-item__name,
+.habit-item__description {
+  overflow-wrap: anywhere;
+}
+
+.habit-item__description {
+  margin-top: 0.15rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.habit-item__detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.habit-item__trailing .badge {
+  margin-right: var(--space-1);
+}

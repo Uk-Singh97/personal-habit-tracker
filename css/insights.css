@@ -1,0 +1,110 @@
+/* css/insights.css
+   Dashboard and Habits page additions: statistics, weekly chart, overall
+   figures, activity, and the filter summary line.
+   Loaded AFTER components.css and habits.css. */
+
+/* ---------- Weekly chart additions ---------- */
+.week-chart__col {
+  min-width: 0;
+}
+
+.week-chart__col--today .week-chart__label {
+  color: var(--color-link);
+}
+
+.week-chart__col--today .week-chart__track {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.week-chart__col--future .week-chart__track {
+  opacity: 0.55;
+}
+
+.week-chart__bar--full {
+  background: var(--color-accent);
+}
+
+.week-chart__count {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+
+.week-summary {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.week-summary__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.week-summary__line strong {
+  font-size: var(--text-lg);
+}
+
+/* ---------- Overall figures ---------- */
+.figure-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.figure__value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.figure__label {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+/* ---------- Statistic hints ---------- */
+.stat-card__hint {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Activity dot colours by action ---------- */
+.activity-item__dot--created,
+.activity-item__dot--updated {
+  background: var(--color-primary);
+}
+
+.activity-item__dot--uncompleted {
+  background: var(--color-warning);
+}
+
+.activity-item__dot--deleted {
+  background: var(--color-danger);
+}
+
+.activity-item > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Habits page: streak and filter summary ---------- */
+.habit-item__streak {
+  color: var(--color-warning);
+  font-weight: 600;
+}
+
+.filter-summary {
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

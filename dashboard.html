@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | Habit Tracker</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/habits.css">
+  <link rel="stylesheet" href="css/insights.css">
+</head>
+<body data-page="dashboard">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <div class="app-main">
+      <header class="mobile-topbar" id="mobile-topbar"></header>
+
+      <main id="main" class="page" tabindex="-1">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-subtitle"><time id="today-label"></time></p>
+          </div>
+          <div class="page-actions">
+            <a class="btn btn--secondary" href="history.html">History</a>
+            <a class="btn btn--primary" href="habits.html">Manage habits</a>
+          </div>
+        </div>
+
+        <section class="grid grid--stats section-gap" aria-label="Statistics">
+          <article class="card stat-card">
+            <span class="stat-card__icon" data-icon="target"></span>
+            <div>
+              <p class="stat-card__label">Active habits</p>
+              <p class="stat-card__value" id="stat-active">0</p>
+            </div>
+          </article>
+          <article class="card stat-card">
+            <span class="stat-card__icon" data-icon="calendar"></span>
+            <div>
+              <p class="stat-card__label">Scheduled today</p>
+              <p class="stat-card__value" id="stat-scheduled">0</p>
+            </div>
+          </article>
+          <article class="card stat-card">
+            <span class="stat-card__icon" data-icon="check"></span>
+            <div>
+              <p class="stat-card__label">Done today</p>
+              <p class="stat-card__value" id="stat-done">0</p>
+            </div>
+          </article>
+          <article class="card stat-card">
+            <span class="stat-card__icon" data-icon="clock"></span>
+            <div>
+              <p class="stat-card__label">Remaining today</p>
+              <p class="stat-card__value" id="stat-remaining">0</p>
+            </div>
+          </article>
+          <article class="card stat-card">
+            <span class="stat-card__icon" data-icon="flame"></span>
+            <div>
+              <p class="stat-card__label">Best current streak</p>
+              <p class="stat-card__value" id="stat-streak">0</p>
+              <p class="stat-card__hint" id="stat-streak-hint"></p>
+            </div>
+          </article>
+          <article class="card stat-card">
+            <span class="stat-card__icon" data-icon="chart"></span>
+            <div>
+              <p class="stat-card__label">Overall completion</p>
+              <p class="stat-card__value" id="stat-overall">&ndash;</p>
+              <p class="stat-card__hint" id="stat-overall-hint"></p>
+            </div>
+          </article>
+        </section>
+
+        <div class="grid grid--two section-gap">
+          <section class="card" aria-labelledby="today-title">
+            <div class="card__header">
+              <div>
+                <h2 class="card__title" id="today-title">Today's habits</h2>
+                <p class="card__subtitle">Tick a habit to mark it done for today. Tick it again to undo.</p>
+              </div>
+            </div>
+            <div id="today-list"><p class="card__subtitle">Loading&hellip;</p></div>
+          </section>
+
+          <div class="stack">
+            <section class="card" aria-labelledby="ring-title">
+              <h2 class="card__title" id="ring-title">Daily completion</h2>
+              <div class="stack stack--sm section-gap">
+                <div class="ring" id="ring" role="img" aria-label="Daily completion">
+                  <span class="ring__value" id="ring-value">&ndash;</span>
+                </div>
+                <p class="card__subtitle" id="ring-caption" style="text-align:center"></p>
+              </div>
+            </section>
+
+            <section class="card" aria-labelledby="week-title">
+              <h2 class="card__title" id="week-title">Weekly progress</h2>
+              <div class="section-gap" id="week-region"><p class="card__subtitle">Loading&hellip;</p></div>
+            </section>
+
+            <section class="card" aria-labelledby="overall-title">
+              <h2 class="card__title" id="overall-title">Overall</h2>
+              <div class="section-gap" id="overall-region"><p class="card__subtitle">Loading&hellip;</p></div>
+            </section>
+
+            <section class="card" aria-labelledby="activity-title">
+              <h2 class="card__title" id="activity-title">Recent activity</h2>
+              <div class="section-gap" id="activity-region"><p class="card__subtitle">Loading&hellip;</p></div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <nav class="tabbar" id="tabbar" aria-label="Primary mobile"></nav>
+  <script type="module" src="js/page-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor settings
+.vscode/
+*.code-workspace
+
+# Backups exported from the app's Settings page contain personal habit data
+habit-tracker-*.json
+test-backup.json
+
+# Logs
+*.log
