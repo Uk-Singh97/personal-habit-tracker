@@ -182,3 +182,5 @@ Browsers used for testing: Chrome Version 156.0.8078.80
 Team: Singh Utkarsh Shibendu,Raunak Kumar Pandey,Borra Sai Kiran
 
 This project was developed with the help of an AI assistant (Claude, by Anthropic).
+#   p e r s o n a l - h a b i t - t r a c k e r  
+ 
