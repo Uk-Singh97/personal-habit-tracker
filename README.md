@@ -2,7 +2,7 @@
 
 **Team Galacticos** · CA1 project · built with HTML, CSS and vanilla JavaScript only
 
-**Live demo:** [ADD: your GitHub Pages link, for example https://your-username.github.io/your-repository/]
+**Live demo:**  https://uk-singh97.github.io/personal-habit-tracker/
 
 A personal habit tracker. Create habits, choose when they are due, tick them off each day, and review your progress over time with a dashboard, a history calendar, streaks and weekly and monthly summaries.
 
@@ -182,5 +182,6 @@ Browsers used for testing: Chrome Version 156.0.8078.80
 Team: Singh Utkarsh Shibendu,Raunak Kumar Pandey,Borra Sai Kiran
 
 This project was developed with the help of an AI assistant (Claude, by Anthropic).
-#   p e r s o n a l - h a b i t - t r a c k e r  
- 
+#� �p�e�r�s�o�n�a�l�-�h�a�b�i�t�-�t�r�a�c�k�e�r�
+�
+�
